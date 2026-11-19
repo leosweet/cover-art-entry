@@ -1,12 +1,39 @@
-html, body { margin: 0; height: 100%; background: #f2f0f4; color: #1d1b22; font: 15px/1.4 system-ui, sans-serif; }
-.app { display: flex; gap: 32px; align-items: center; justify-content: center; height: 100%; padding: 24px; box-sizing: border-box; }
-.controls { display: flex; flex-direction: column; gap: 14px; width: 280px; }
-.controls h1 { margin: 0; font-size: 28px; }
-.controls p { margin: 0; color: #5c5866; }
-label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; }
-input[type=text] { font: inherit; padding: 8px; border: 1px solid #c9c4d1; border-radius: 6px; }
-button { font: inherit; font-weight: 700; padding: 10px; border: 0; border-radius: 6px; background: #1d1b22; color: #fff; cursor: pointer; }
-canvas { width: min(70vh, 60vw); height: min(70vh, 60vw); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); }
+/* Neon Cover editor: dark room, neon accents, the cover big on the right. */
+html, body { margin: 0; min-height: 100%; background: #12081a; color: #f2eaf6; font: 15px/1.45 system-ui, sans-serif; }
+.app { display: flex; gap: 28px; align-items: flex-start; justify-content: center; min-height: 100vh; padding: 22px; box-sizing: border-box; }
+.controls { display: flex; flex-direction: column; gap: 14px; width: 320px; flex: none; }
+.controls h1 { margin: 0; font-size: 30px; letter-spacing: 0.02em; background: linear-gradient(90deg, #ffd319, #ff2975, #8c1eff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.controls p { margin: 0; color: #b9a8c4; }
+fieldset { border: 1px solid #3d2450; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 10px; margin: 0; }
+legend { font-weight: 700; color: #ffd319; padding: 0 6px; }
+label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 13px; }
+.hint { font-size: 12px; color: #8d7a99; font-weight: 400; }
+input[type=text], select { font: inherit; padding: 8px; border: 1px solid #4a2f5e; border-radius: 6px; background: #1e0f2a; color: #f2eaf6; }
+input[type=range] { width: 100%; accent-color: #ff2975; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; }
+button { font: inherit; font-weight: 600; padding: 8px 12px; border: 1px solid #4a2f5e; border-radius: 6px; background: #241233; color: #f2eaf6; cursor: pointer; }
+button:hover { border-color: #ff2975; }
+button.active { background: #ff2975; border-color: #ff2975; color: #fff; }
+.file { cursor: pointer; }
+.file input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.shelf { display: flex; flex-wrap: wrap; gap: 8px; }
+.thumb { padding: 2px; border-radius: 6px; }
+.thumb canvas { display: block; border-radius: 4px; }
+.zoomrow { display: flex; gap: 8px; align-items: center; }
+.zoomrow button { padding: 4px 12px; }
+.export { font-size: 17px; font-weight: 800; padding: 13px; border: 0; background: linear-gradient(90deg, #ffd319, #ff2975); color: #160818; }
+.export:hover { filter: brightness(1.1); }
+#status { min-height: 1.2em; font-size: 13px; color: #8d7a99; }
+.preview { flex: 1; display: flex; align-items: center; justify-content: center; min-width: 0; position: sticky; top: 22px; }
+canvas#cover { max-width: 100%; max-height: calc(100vh - 44px); box-shadow: 0 10px 44px rgba(0, 0, 0, 0.55); border-radius: 4px; cursor: grab; background: #160818; }
+canvas#cover:active { cursor: grabbing; }
+canvas#cover:focus { outline: 2px solid #ff2975; outline-offset: 4px; }
 body.shot-cover .controls { display: none; }
 body.shot-cover .app { padding: 0; }
-body.shot-cover canvas { width: 100vw; height: 100vh; box-shadow: none; }
+body.shot-cover .preview { position: static; }
+body.shot-cover canvas#cover { max-width: none; max-height: none; width: 100vw; height: 100vh; box-shadow: none; border-radius: 0; }
+@media (max-width: 900px) {
+  .app { flex-direction: column; }
+  .controls { width: 100%; }
+  .preview { position: static; width: 100%; }
+}
